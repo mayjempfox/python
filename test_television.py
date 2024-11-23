@@ -58,33 +58,40 @@ setting up the television        '''
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 0'
 
     def test_channel_down(self):
+        '''
+        test if the channel goes down to min the loops
+        '''
         self.tv1.channel_down()
         assert self.tv1.__str__() == 'Power = False, Channel = 0, Volume = 0'
-
         self.tv1.power()
         self.tv1.channel_down()
         assert self.tv1.__str__() == 'Power = True, Channel = 3, Volume = 0'
-
         self.tv1.channel_up()
         self.tv1.channel_up()
         self.tv1.channel_down()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 0'
 
     def test_volume_up(self):
+        '''
+        test volume if reach max it stays max
+        test mutes unmute
+        '''
         self.tv1.volume_up()
         assert self.tv1.__str__() == 'Power = False, Channel = 0, Volume = 0'
         self.tv1.power()
         self.tv1.volume_up()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 1'
-
         self.tv1.mute()
         self.tv1.volume_up()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 2'
-
         self.tv1.volume_up()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 2'
 
     def test_volume_down(self):
+        '''
+        test volume if reach min it stays min
+        test unmute
+        '''
         self.tv1.volume_down()
         assert self.tv1.__str__() == 'Power = False, Channel = 0, Volume = 0'
         self.tv1.power()
@@ -92,10 +99,8 @@ setting up the television        '''
         self.tv1.volume_up()
         self.tv1.volume_down()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 1'
-
         self.tv1.mute()
         self.tv1.volume_down()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 0'
-
         self.tv1.volume_down()
         assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 0'
